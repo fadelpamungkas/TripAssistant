@@ -137,35 +137,31 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 promo ftco-animate">
-            <a href="#" class="promo-img mb-4" style="background-image: url(images/airterjun.jpg);"></a>
+            <a href="" class="promo-img mb-4" style="background-image: url(images/airterjun.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Air</h2>
               <h3 class="price"><span>from</span> Rp 20.000</h3>
-              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="#" class="promo-img mb-4" style="background-image: url(images/promo-2.jpg);"></a>
+            <a href="" class="promo-img mb-4" style="background-image: url(images/promo-2.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Pantai</h2>
               <h3 class="price"><span>from</span> Rp 10.000</h3>
-              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="#" class="promo-img mb-4" style="background-image: url(images/promo-3.jpg);"></a>
+            <a href="" class="promo-img mb-4" style="background-image: url(images/promo-3.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Gunung</h2>
               <h3 class="price"><span>from</span> Rp 8.000</h3>
-              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="#" class="promo-img mb-4" style="background-image: url(images/bg_2.jpg);"></a>
+            <a href="" class="promo-img mb-4" style="background-image: url(images/bg_2.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Lainnya</h2>
               <h3 class="price"><span>from</span> Rp15.000</h3>
-              <a href="#" class="read">Read more</a>
             </div>
           </div>
         </div>
@@ -232,7 +228,7 @@
         <div class="row no-gutters">
         @foreach($data_wisata as $p)
           <div class="col-md-6 col-lg-3 ftco-animate">
-            <a href="/wisata/{{$p->id_wisata}}" class="block-5" style="background-image: url('images/h4.jpg');">
+            <a href="/wisata/{{$p->id_wisata}}" class="block-5" style="background-image: url(<?= $p->gambar_wisata  ?>);">
               <div class="text">
                 <span class="price">Rp <?= $p->harga_wisata  ?> </span>
                 <h3 class="heading"> <?= $p->nama_wisata ?> </h3>
