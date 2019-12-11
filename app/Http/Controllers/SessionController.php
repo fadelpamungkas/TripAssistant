@@ -30,15 +30,9 @@ class SessionController extends Controller
         ]);
  
         $credentials = $request->only('email', 'password');
-        $data = $request->all();
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            Session::put('nama_depan', $data->nama_depan);
-            Session::put('nama_belakang', $data->nama_belakang);
-            Session::put('email', $data->email);
-            Session::put('password', $data->password);
             return redirect()->intended('/');
-
         }
         return Redirect::to("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
@@ -81,6 +75,6 @@ class SessionController extends Controller
     public function logout() {
         Session::flush();
         Auth::logout();
-        return Redirect('login');
+        return Redirect('/');
     }
 }

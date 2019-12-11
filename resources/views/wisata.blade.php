@@ -35,11 +35,23 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
-
         <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">
+        @if(Auth::check())
+          @foreach($users as $n)
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+          <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <span><?= $n->nama_depan ?></span></a></li>
+            <form id="logout-form" action=" {{url('logout')}} " method="POST">
+                    @csrf
+                </form>
+            @endforeach
+        @else
+            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+        @endif
           </ul>
         </div>
       </div>
@@ -48,29 +60,7 @@
     
    @foreach($data_wisata as $p)
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('/images/h1.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text align-items-center">
-            <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3"><?= $p->nama_wisata ?></h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slider-item" style="background-image: url('/images/h2.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row slider-text align-items-center">
-            <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3"><?= $p->nama_wisata ?></h1>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="slider-item" style="background-image: url('/images/h3.jpg');">
+      <div class="slider-item" style="background-image: url('<?=$p->gambar_wisata?>');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
@@ -90,7 +80,7 @@
         <div class="row">
           <div class="col-md-8 ftco-animate">            
             <p>
-              <img src=<?= $p->gambar_wisata ?> alt="" class="img-fluid">
+              <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
             </p>
             <p> <?= $p->harga_wisata ?> </p> 
             <p> <?= $p->rating_wisata ?> <span class="fa fa-star checked"></span></p>

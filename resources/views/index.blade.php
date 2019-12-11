@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -38,16 +38,23 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
+          @if(Auth::check())
+            @foreach($users as $n)
             <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
             <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-
-            @if(\Session::has('nama_depan'))
-            <li class="nav-item"><a href="/" class="nav-link">{{ ucfirst(Auth()->user()->nama_depan) }}</a></li>
-            <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
-            @else
+            <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <span><?= $n->nama_depan ?></span></a></li>
+            <form id="logout-form" action=" {{url('logout')}} " method="POST">
+                    @csrf
+                </form>
+            @endforeach
+          @else
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-            <li class="nav-item"><a href="/registration" class="nav-link">Register</a></li>
-            @endif
+          @endif
           </ul>
         </div>
       </div>
@@ -137,31 +144,35 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 promo ftco-animate">
-            <a href="" class="promo-img mb-4" style="background-image: url(images/airterjun.jpg);"></a>
+            <a href="#" class="promo-img mb-4" style="background-image: url(images/airterjun.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Air</h2>
               <h3 class="price"><span>from</span> Rp 20.000</h3>
+              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="" class="promo-img mb-4" style="background-image: url(images/promo-2.jpg);"></a>
+            <a href="#" class="promo-img mb-4" style="background-image: url(images/promo-2.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Pantai</h2>
               <h3 class="price"><span>from</span> Rp 10.000</h3>
+              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="" class="promo-img mb-4" style="background-image: url(images/promo-3.jpg);"></a>
+            <a href="#" class="promo-img mb-4" style="background-image: url(images/promo-3.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Gunung</h2>
               <h3 class="price"><span>from</span> Rp 8.000</h3>
+              <a href="#" class="read">Read more</a>
             </div>
           </div>
           <div class="col-lg-3 promo ftco-animate">
-            <a href="" class="promo-img mb-4" style="background-image: url(images/bg_2.jpg);"></a>
+            <a href="#" class="promo-img mb-4" style="background-image: url(images/bg_2.jpg);"></a>
             <div class="text text-center">
               <h2>Wisata Lainnya</h2>
               <h3 class="price"><span>from</span> Rp15.000</h3>
+              <a href="#" class="read">Read more</a>
             </div>
           </div>
         </div>
@@ -175,19 +186,21 @@
             <h2>That You Do</h2>
           </div>
         </div>
+      </div>
+      <div class="container">
         <div class="row">
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
-              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-sailboat"></span></div></div>
+              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-web"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Membuka TripAssistant</h3>
                 <h2>1</h2>
               </div>
             </div>      
-          </div>
+          </div>  
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
-              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-around"></span></div></div>
+              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-find"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Mencari Wisata</h3>
                 <h2>2</h2>
@@ -196,17 +209,16 @@
           </div>
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
-              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-compass"></span></div></div>
+              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-ticket"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Membeli Tiket Wisata</h3>
                 <h2>3</h2>
               </div>
             </div>    
           </div>
-
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
-              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-map-of-roads"></span></div></div>
+              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-traveler-with-a-suitcase"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Pergi ke Wisata</h3>
                 <h2>4</h2>
@@ -214,6 +226,7 @@
             </div>      
           </div>
         </div>
+      </div>
       </div>
     </section>
 
@@ -226,9 +239,9 @@
           </div>
         </div>
         <div class="row no-gutters">
-        @foreach($data_wisata as $p)
+      @foreach($data_wisata as $p)
           <div class="col-md-6 col-lg-3 ftco-animate">
-            <a href="/wisata/{{$p->id_wisata}}" class="block-5" style="background-image: url(<?= $p->gambar_wisata  ?>);">
+            <a href="/wisata/{{$p->nama_wisata}}" class="block-5" style="background-image: url('<?=$p->gambar_wisata?>');">
               <div class="text">
                 <span class="price">Rp <?= $p->harga_wisata  ?> </span>
                 <h3 class="heading"> <?= $p->nama_wisata ?> </h3>
@@ -240,6 +253,8 @@
             </a>
           </div>
       @endforeach
+    </section>
+    
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -254,12 +269,9 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Candi Borobudur</a></li>
-                <li><a href="#" class="py-2 d-block">Candi Prambanan</a></li>
-                <li><a href="#" class="py-2 d-block">Gunung Merapi</a></li>
-                <li><a href="#" class="py-2 d-block">Pantai Parangtritis</a></li>
-                <li><a href="#" class="py-2 d-block">Pantai Kresengan</a></li>
-                <li><a href="#" class="py-2 d-block">Bunker Kaliadem</a></li>
+                @foreach($data_wisata as $p)
+                <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+                @endforeach
               </ul>
             </div>
           </div>

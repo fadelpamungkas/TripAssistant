@@ -61,8 +61,12 @@
                   <span class="error">{{ $errors->first('password') }}</span>
                   @endif  
                 </div>
+
+                <div class="form-label-group">
+                <td><input type="radio" name="jenis_kelamin" value="Pria" checked>Pria
+                <input type="radio" name="jenis_kelamin" value="Wanita">Wanita
  
-                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block btn-login text-upper  case font-weight-bold mb-2" type="submit">Sign Up</button>
                 <div class="text-center">If you have an account?
                   <a class="small" href="{{url('login')}}">Sign In</a></div>
               </form>
