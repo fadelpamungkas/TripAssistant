@@ -58,18 +58,16 @@
     </nav>
 
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/h1.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">Experience the best trip ever</h1>
             </div>
           </div>
         </div>
-      </div>
     </section>
 
+    <center>
     <section class="ftco-section">
 	<form action="/cari" method="GET">
 		<input type="text" name="cari" placeholder="Cari Wisata" value="{{ old('cari') }}">
@@ -86,8 +84,8 @@
 		</tr>
 		@foreach($data_wisata as $p)
 		<tr>
-      <td><img src="<?=$p->gambar_wisata?>"></td>
-			<td>{{ $p->nama_wisata }}</td>
+      <td><img src="<?=$p->gambar_wisata?>"style ='width:400px;height:300px'></td>
+			<td><center><a href="/wisata/{{$p->nama_wisata}}"><?=$p->nama_wisata?></center></td>
 			<td><center>{{ $p->rating_wisata }} <span class="fa fa-star checked"></span></center></td>
 			<td><center>{{ $p->review_wisata }}</center></td>
 		</tr>
@@ -99,9 +97,25 @@
 	Jumlah Data : {{ $data_wisata->total() }} <br/>
 	Data Per Halaman : {{ $data_wisata->perPage() }} <br/> -->
     </section>
+    </center>
 
 	{{ $data_wisata->links() }}
 
-
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/jquery.timepicker.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="/js/google-map.js"></script>
+  <script src="/js/main.js"></script>
 </body>
 </html>

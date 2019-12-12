@@ -80,10 +80,10 @@
             <p>
               <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
             </p>
-            <p> <?= $p->harga_wisata ?> </p> 
+            <p>Rp <?= $p->harga_wisata ?> </p> 
             <p> <?= $p->rating_wisata ?> <span class="fa fa-star checked"></span></p>
-            <p> <?= $p->review_wisata ?> </p>
-            <p> <?= $p->jadwal_wisata ?> </p>
+            <p> <?= $p->review_wisata ?> Riviews </p>
+            <p>Jadwal : <?= $p->jadwal_wisata ?> </p>
             <h2 class="mb-3"> <?= $p->nama_wisata ?> </h2>
             <p> <?= $p->informasi_wisata ?> </p>
             <div class="row mt-5">
@@ -99,9 +99,9 @@
                     <img src="/images/person_1.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <h3>Adi</h3>
+                    <div class="meta">November 27, 2019 at 2:21pm</div>
+                    <p>Bagus juga tempatnya</p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
                 </li>
@@ -111,64 +111,9 @@
                     <img src="/images/person_1.jpg" alt="Image placeholder">
                   </div>
                   <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-
-                  <ul class="children">
-                    <li class="comment">
-                      <div class="vcard bio">
-                        <img src="/images/person_1.jpg" alt="Image placeholder">
-                      </div>
-                      <div class="comment-body">
-                        <h3>Jean Doe</h3>
-                        <div class="meta">June 27, 2018 at 2:21pm</div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                        <p><a href="#" class="reply">Reply</a></p>
-                      </div>
-
-
-                      <ul class="children">
-                        <li class="comment">
-                          <div class="vcard bio">
-                            <img src="/images/person_1.jpg" alt="Image placeholder">
-                          </div>
-                          <div class="comment-body">
-                            <h3>Jean Doe</h3>
-                            <div class="meta">June 27, 2018 at 2:21pm</div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                            <p><a href="#" class="reply">Reply</a></p>
-                          </div>
-
-                            <ul class="children">
-                              <li class="comment">
-                                <div class="vcard bio">
-                                  <img src="/images/person_1.jpg" alt="Image placeholder">
-                                </div>
-                                <div class="comment-body">
-                                  <h3>Jean Doe</h3>
-                                  <div class="meta">June 27, 2018 at 2:21pm</div>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                                  <p><a href="#" class="reply">Reply</a></p>
-                                </div>
-                              </li>
-                            </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Jean Doe</h3>
-                    <div class="meta">June 27, 2018 at 2:21pm</div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <h3>Fadel</h3>
+                    <div class="meta">Desember 12, 2019 at 2:21pm</div>
+                    <p>Keren lah bisa bisa</p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
                 </li>
@@ -215,6 +160,12 @@
             <div class="sidebar-box ftco-animate">
               <div class="form-group">
                 <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <div class="form-group">
+                <input type="submit" value="Nearby" class="btn btn-primary py-3 px-5">
               </div>
             </div>
 
