@@ -25,6 +25,12 @@ class DataWisataController extends Controller
  
 	}
 
+	public function tampilan_data()
+    {
+    	$data_wisata = DB::table('data_wisata')->get();
+ 
+    	return view('tampilan_data_wisata_admin',['data_wisata' => $data_wisata]);
+	}
     public function tambah()
     {
 		$gambar = GambarWisata::get();
