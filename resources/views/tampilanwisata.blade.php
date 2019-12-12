@@ -42,7 +42,7 @@
           <li class="nav-item active"><a href="/wisata" class="nav-link">Wisata</a></li>
           <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span>Logout</span></a></li>
+            <span>{{ ucfirst(Auth()->user()->nama_depan) }}</span></a></li>
             <form id="logout-form" action=" {{url('logout')}} " method="POST">
                     @csrf
                 </form>
