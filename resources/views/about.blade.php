@@ -75,8 +75,7 @@
     <section class="ftco-section-2">
       <div class="container-fluid d-flex">
         <div class="section-2-blocks-wrapper row no-gutters">
-          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');">
-          </div>
+          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');"></div>
           <div class="text col-lg-6 ftco-animate">
             <div class="text-inner align-self-start">
               
@@ -88,6 +87,7 @@
               <p>Yaudah slur, mungkin segitu aja tentang kami. Makasih.</p>
             </div>
           </div>
+          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');"></div>
         </div>
       </div>
     </section>

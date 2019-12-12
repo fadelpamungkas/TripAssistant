@@ -39,7 +39,7 @@
         <ul class="navbar-nav ml-auto">
         @if(Auth::check())
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item active"><a href="/wisata" class="nav-link">Wisata</a></li>
+          <li class="nav-item active"><a href="/cari" class="nav-link">Wisata</a></li>
           <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <span>Logout</span></a></li>
@@ -58,24 +58,26 @@
     </nav>
 
     <section class="home-slider owl-carousel">
+      <div class="slider-item" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
+              <form action="/cari" method="GET" enctype="multipart/form-data" class="d-block d-lg-flex">
+                <div class="fields d-block d-lg-flex">
+                  <div class="textfield-search one-third"><input type="text" name="cari" class="form-control" placeholder="Search Location"></div>
+                    <input type="submit" class="search-submit btn btn-primary" value="Find">  
+                </div>
+              </form>
             </div>
           </div>
         </div>
+      </div>
     </section>
 
+    
     <center>
-    <section class="ftco-section">
-	<form action="/cari" method="GET">
-		<input type="text" name="cari" placeholder="Cari Wisata" value="{{ old('cari') }}">
-		<input type="submit" value="CARI">
-	</form>	
-
-
-    <section class="ftco-section">
+    <section class="ftco-section bg-light">
       <div class="container">
         <div class="row">
         
@@ -97,20 +99,6 @@
             </div>
           </div>
           @endforeach
-		    <div class="row mt-5">
-          <div class="col text-center">
-            <div class="block-27">
-              <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </section>
