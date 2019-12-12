@@ -73,33 +73,52 @@
 		<input type="text" name="cari" placeholder="Cari Wisata" value="{{ old('cari') }}">
 		<input type="submit" value="CARI">
 	</form>	
-	<br/>
 
-	<table border = "1">
-		<tr>
-      <th>Gambar Wisata</th>
-			<th>Nama Wisata</th>
-			<th>Rating Wisata</th>
-			<th>Review Wisata</th>
-		</tr>
-		@foreach($data_wisata as $p)
-		<tr>
-      <td><img src="<?=$p->gambar_wisata?>"style ='width:400px;height:300px'></td>
-			<td><center><a href="/wisata/{{$p->nama_wisata}}"><?=$p->nama_wisata?></center></td>
-			<td><center>{{ $p->rating_wisata }} <span class="fa fa-star checked"></span></center></td>
-			<td><center>{{ $p->review_wisata }}</center></td>
-		</tr>
-		@endforeach
-	</table>
-    
-	<br/>
-	<!-- Halaman : {{ $data_wisata->currentPage() }} <br/>
-	Jumlah Data : {{ $data_wisata->total() }} <br/>
-	Data Per Halaman : {{ $data_wisata->perPage() }} <br/> -->
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row">
+        
+          @foreach($data_wisata as $d)
+          <div class="col-md-6 col-lg-3 ftco-animate">
+            <div class="blog-entry">
+              <a href="/wisata/{{$d->nama_wisata}}" class="block-20" style="background-image: url('<?=$d->gambar_wisata?>');">
+              </a>
+              <div class="text p-4">
+                <div class="meta">
+                  <div>{{ $d->rating_wisata}} <span class="fa fa-star checked"></span></div>
+                </div>
+                <h3 class="heading"><a href="#">{{ $d->nama_wisata}}</a></h3>
+                <p class="clearfix">
+                  <a href="/wisata/{{$d->nama_wisata}}" class="float-left">Read more</a>
+                  <a class="float-right meta-chat"><span class="icon-chat"></span> {{ $d->review_wisata}}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          @endforeach
+		    <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
     </center>
 
-	{{ $data_wisata->links() }}
+	  <!-- loader -->
+	  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>
