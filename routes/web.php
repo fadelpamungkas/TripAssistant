@@ -38,3 +38,8 @@ Route::get('/cari','DataWisataController@cari');
 
 
 Route::get('/about','HomeController@about');
+
+
+Route::get('/blog', function(){
+    return view('blog');
+});
