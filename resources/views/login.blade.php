@@ -23,7 +23,7 @@
         <div class="container">
           <div class="row">
           @if(Auth::check())
-              <a href=""></a>
+              <a href="/"></a> 
           @else
             <div class="col-md-9 col-lg-8 mx-auto">
               <h3 class="login-heading mb-4">Welcome back Tripers!</h3>

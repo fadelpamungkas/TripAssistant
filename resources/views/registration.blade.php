@@ -28,8 +28,8 @@
                  {{ csrf_field() }}
                 <div class="form-label-group">
                   <input type="text" id="inputNamaDepan" name="nama_depan" class="form-control" placeholder="Nama Depan" autofocus>
-                  <label for="inputNamaDepan">Name</label>
- 
+                  <br>
+                  
                   @if ($errors->has('nama_depan'))
                   <span class="error">{{ $errors->first('nama_depan') }}</span>
                   @endif       
@@ -37,8 +37,8 @@
                 </div> 
                 <div class="form-label-group">
                   <input type="text" id="inputNamaBelakang" name="nama_belakang" class="form-control" placeholder="Nama Belakang" autofocus>
-                  <label for="inputNamaBelakang">Name</label>
- 
+                  <br>
+                  
                   @if ($errors->has('nama_belakang'))
                   <span class="error">{{ $errors->first('nama_belakang') }}</span>
                   @endif       
@@ -46,8 +46,8 @@
                 </div> 
                 <div class="form-label-group">
                   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" >
-                  <label for="inputEmail">Email address</label>
- 
+                  <br>
+                  
                   @if ($errors->has('email'))
                   <span class="error">{{ $errors->first('email') }}</span>
                   @endif    
@@ -55,12 +55,16 @@
  
                 <div class="form-label-group">
                   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-                  <label for="inputPassword">Password</label>
+                  <br>
                    
                   @if ($errors->has('password'))
                   <span class="error">{{ $errors->first('password') }}</span>
                   @endif  
                 </div>
+<!-- 
+                <div class="form-label-group">
+                  <input type="hidden" name="admin" class="form-control" value="0">
+                </div> -->
 
                 <div class="form-label-group">
                 <td><input type="radio" name="jenis_kelamin" value="Pria" checked>Pria

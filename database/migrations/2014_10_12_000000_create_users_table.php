@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->enum('jenis_kelamin', ['Pria','Wanita']);
+            $table->boolean('admin');
             $table->timestamps();
         });
     }

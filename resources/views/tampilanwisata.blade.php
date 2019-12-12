@@ -38,18 +38,18 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
         @if(Auth::check())
-          @foreach($users as $n)
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+          <li class="nav-item active"><a href="/wisata" class="nav-link">Wisata</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span><?= $n->nama_depan ?></span></a></li>
+            <span>Logout</span></a></li>
             <form id="logout-form" action=" {{url('logout')}} " method="POST">
                     @csrf
                 </form>
-            @endforeach
         @else
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item active"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
         @endif
           </ul>
@@ -71,34 +71,33 @@
     </section>
 
     <section class="ftco-section">
-	<p>Cari Data data_wisata :</p>
 	<form action="/cari" method="GET">
-		<input type="text" name="cari" placeholder="Cari data_wisata .." value="{{ old('cari') }}">
+		<input type="text" name="cari" placeholder="Cari Wisata" value="{{ old('cari') }}">
 		<input type="submit" value="CARI">
 	</form>	
 	<br/>
 
-	<table border="1">
+	<table border = "1">
 		<tr>
+      <th>Gambar Wisata</th>
 			<th>Nama Wisata</th>
 			<th>Rating Wisata</th>
 			<th>Review Wisata</th>
-			<th>Gambar Wisata</th>
 		</tr>
 		@foreach($data_wisata as $p)
 		<tr>
+      <td><img src="<?=$p->gambar_wisata?>"></td>
 			<td>{{ $p->nama_wisata }}</td>
-			<td>{{ $p->rating_wisata }}</td>
-			<td>{{ $p->review_wisata }}</td>
-			<td>{{ $p->gambar_wisata }}</td>
+			<td><center>{{ $p->rating_wisata }} <span class="fa fa-star checked"></span></center></td>
+			<td><center>{{ $p->review_wisata }}</center></td>
 		</tr>
 		@endforeach
 	</table>
     
 	<br/>
-	Halaman : {{ $data_wisata->currentPage() }} <br/>
+	<!-- Halaman : {{ $data_wisata->currentPage() }} <br/>
 	Jumlah Data : {{ $data_wisata->total() }} <br/>
-	Data Per Halaman : {{ $data_wisata->perPage() }} <br/>
+	Data Per Halaman : {{ $data_wisata->perPage() }} <br/> -->
     </section>
 
 	{{ $data_wisata->links() }}

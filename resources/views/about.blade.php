@@ -38,19 +38,17 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
           @if(Auth::check())
-            @foreach($users as $n)
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
             <li class="nav-item active"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span><?= $n->nama_depan ?></span></a></li>
+            <span>Logout</span></a></li>
             <form id="logout-form" action=" {{url('logout')}} " method="POST">
                     @csrf
                 </form>
-            @endforeach
           @else
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
             <li class="nav-item active"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
           @endif

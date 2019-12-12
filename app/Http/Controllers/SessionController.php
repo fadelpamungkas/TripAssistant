@@ -7,6 +7,7 @@ use Validator,Redirect,Response;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Session;
  
 class SessionController extends Controller
@@ -14,7 +15,9 @@ class SessionController extends Controller
  
     public function index()
     {
-        return view('login');
+      $users = DB::table('users')->get();
+ 
+    	return view('login',['users' => $users]);
     }  
  
     public function registration()
@@ -29,10 +32,19 @@ class SessionController extends Controller
         'password' => 'required',
         ]);
  
+        // $users = DB::table('users')->get('admin');
         $credentials = $request->only('email', 'password');
+        $email = $request->only('email');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->intended('/');
+
+            // $users = DB::table('users')->where('email', $email)->get();
+            // $users->admin = ($request->has('admin')) ? 1 : 0;
+            if(Auth::user()->admin == 1){
+              return redirect()->intended('/data_wisata');
+            }else{
+              return redirect()->intended('/');
+            }
         }
         return Redirect::to("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
@@ -44,6 +56,7 @@ class SessionController extends Controller
         'nama_belakang' => 'required',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:6',
+        'admin' => '0'
         ]);
          
         $data = $request->all();
@@ -68,7 +81,8 @@ class SessionController extends Controller
         'nama_depan' => $data['nama_depan'],
         'nama_belakang' => $data['nama_belakang'],
         'email' => $data['email'],
-        'password' => Hash::make($data['password'])
+        'password' => Hash::make($data['password']),
+        'admin' => '0'
       ]);
     }
      

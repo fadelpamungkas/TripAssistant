@@ -27,6 +27,11 @@
         <div class="col-md-8">
             <div class="card">
 				<div class="card-header">{{ __('Data Wisata') }}</div>
+				<div><a href="/data_wisata/tambah">+ Data Wisata</a><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <span>Logout</span></a></li>
+            <form id="logout-form" action=" {{url('logout')}} " method="POST">
+                    @csrf
+                </form></div>
 	<table border = "1">
 		<tr>
 			<th>Id Wisata</th>
@@ -56,5 +61,9 @@
 		</tr>
 		@endforeach
 	</table>
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

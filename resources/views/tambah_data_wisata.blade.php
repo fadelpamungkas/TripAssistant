@@ -26,7 +26,7 @@
 	<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            
 				<div class="card-header">{{ __('Tambah Data Wisata') }}</div>
 				
 	<form action="/data_wisata/store" method="post" enctype="multipart/form-data">
