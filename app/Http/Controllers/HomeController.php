@@ -10,10 +10,7 @@ class HomeController extends Controller
     public function index()
     {
     	$data_wisata = DB::table('data_wisata')->get();
-		$users = DB::table('users')->select("nama_depan as nama")->get();
-		foreach($users as $u){
-			$u->nama;
-		}
+		$users = DB::table('users')->get();
     	return view('index',['data_wisata' => $data_wisata, 'users' => $users]);
     }
     

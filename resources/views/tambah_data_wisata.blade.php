@@ -54,7 +54,7 @@
 			</tr>
 			<tr>
 				<td>Informasi Wisata</td>
-				<td><input type="text" name="informasi_wisata"></td>
+				<td><textarea name="informasi_wisata" cols="60" rows="10"></textarea></td>
 			</tr>
             <tr>
             	<td>Gambar Wisata</td>

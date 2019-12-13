@@ -30,12 +30,9 @@ Route::post('/post-registration', 'SessionController@postRegistration');
 Route::get('/dashboard', 'SessionController@dashboard'); 
 Route::post('/logout', 'SessionController@logout');
 
-Route::get('/upload', 'UploadController@upload');
-Route::post('/upload/proses', 'UploadController@proses_upload');
-
 Route::get('/wisata/{nama}','DataWisataController@wisata');
 Route::get('/cari','DataWisataController@cari');
-
+Route::post('/wisata/comment','DataWisataController@comment');
 
 Route::get('/about','HomeController@about');
 

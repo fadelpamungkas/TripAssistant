@@ -90,7 +90,7 @@
               <div class="col-md-12" id="map"></div>
             </div>
     @endforeach
-
+            
             <div class="pt-5 mt-5">
               <h3 class="mb-5">Reviews</h3>
               <ul class="comment-list">
@@ -98,14 +98,16 @@
                   <div class="vcard bio">
                     <img src="/images/person_1.jpg" alt="Image placeholder">
                   </div>
+                  @foreach($comment as $c)
                   <div class="comment-body">
-                    <h3>Adi</h3>
+                    <h3><?= $c->nama_user ?></h3>
                     <div class="meta">November 27, 2019 at 2:21pm</div>
-                    <p>Bagus juga tempatnya</p>
+                    <p><?= $c->nama_comment ?></p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
+                  @endforeach
                 </li>
-
+<!-- 
                 <li class="comment">
                   <div class="vcard bio">
                     <img src="/images/person_1.jpg" alt="Image placeholder">
@@ -116,36 +118,37 @@
                     <p>Keren lah bisa bisa</p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
-                </li>
+                </li> -->
               </ul>
               <!-- END comment-list -->
-              
+
+              @if(Auth::check())
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-5 bg-light">
+                <form action="/wisata/comment" method="post"class="p-5 bg-light">
+                {{ csrf_field() }}
                   <div class="form-group">
-                    <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
+                    <label for="name">Nama</label>
+                    <input value="<?=Auth::user()->nama_depan?> <?=Auth::user()->nama_belakang?>" name="nama_user" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
+                    <label for="name">Rating Wisata</label>
+                    <input type="integer" id="rating_comment" name="rating_comment" size="1" maxlength="1"><span class="fa fa-star checked"></span>
                   </div>
                   <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="nama_comment">Message</label>
+                    <textarea name="nama_comment" id="nama_comment" nama="nama_comment" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                    <input type="submit" name="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
                   </div>
-
                 </form>
               </div>
+              @endif
             </div>
+          </div>
 
-          </div> <!-- .col-md-8 -->
           <div class="col-md-4 sidebar">
-
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>Budget</h3>

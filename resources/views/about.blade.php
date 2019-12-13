@@ -59,7 +59,7 @@
     <!-- END nav -->
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/tugu_jogja.jpg');" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url('images/image_3.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
@@ -87,7 +87,6 @@
               <p>Yaudah slur, mungkin segitu aja tentang kami. Makasih.</p>
             </div>
           </div>
-          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');"></div>
         </div>
       </div>
     </section>
@@ -152,12 +151,9 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Candi Borobudur</a></li>
-                <li><a href="#" class="py-2 d-block">Candi Prambanan</a></li>
-                <li><a href="#" class="py-2 d-block">Gunung Merapi</a></li>
-                <li><a href="#" class="py-2 d-block">Pantai Parangtritis</a></li>
-                <li><a href="#" class="py-2 d-block">Pantai Kresengan</a></li>
-                <li><a href="#" class="py-2 d-block">Bunker Kaliadem</a></li>
+              @foreach($data_wisata as $p)
+                <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+                @endforeach
               </ul>
             </div>
           </div>

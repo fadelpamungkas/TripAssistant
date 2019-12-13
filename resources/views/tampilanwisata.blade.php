@@ -90,7 +90,10 @@
                 <div class="meta">
                   <div>{{ $d->rating_wisata}} <span class="fa fa-star checked"></span></div>
                 </div>
-                <h3 class="heading"><a href="#">{{ $d->nama_wisata}}</a></h3>
+                <h3 class="heading">{{ $d->nama_wisata}}</h3>
+                <div class="meta">
+                  <div>Rp {{ $d->harga_wisata}}</div>
+                </div>
                 <p class="clearfix">
                   <a href="/wisata/{{$d->nama_wisata}}" class="float-left">Read more</a>
                   <a class="float-right meta-chat"><span class="icon-chat"></span> {{ $d->review_wisata}}</a>
