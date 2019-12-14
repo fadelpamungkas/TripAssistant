@@ -12,7 +12,9 @@ class DataWisataController extends Controller
     {
     	$data_wisata = DB::table('data_wisata')->where('nama_wisata',$nama)->get();
 		$users = DB::table('users')->get();
-		$comment = DB::table('comment')->get();
+		foreach($data_wisata as $p){
+		$comment = DB::table('comment')->where('id_wisata','=',$p->id_wisata)->get();
+		}
     	return view('wisata',['data_wisata' => $data_wisata, 'users' => $users, 'comment' => $comment]);
 	}
 	
@@ -38,13 +40,14 @@ class DataWisataController extends Controller
 	
 	public function comment(Request $request)
     {
-    	$data_wisata = DB::table('data_wisata')->get();
-		$users = DB::table('users')->get();
+		$data_wisata = DB::table('data_wisata')->where('nama_wisata',$request->nama_wisata)->get();
 		DB::table('comment')->insert([
+			'id_wisata' => $request->id_wisata,
 			'nama_user' => $request->nama_user,
 			'rating_comment' => $request->rating_comment,
 			'nama_comment' => $request->nama_comment
 		]);
+		DB::table('comment')->where('id_wisata','=',$request->id_wisata)->get();
 		return back();
 	}
 
@@ -59,8 +62,6 @@ class DataWisataController extends Controller
 				'nama_wisata' => $request->nama_wisata,
 				'harga_wisata' => $request->harga_wisata,
 				'jadwal_wisata' => $request->jadwal_wisata,
-				'rating_wisata' => $request->rating_wisata,
-				'review_wisata' => $request->review_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
 				'gambar_wisata' => '/images/'.$file->getClientOriginalName()
 			]);
@@ -81,8 +82,6 @@ class DataWisataController extends Controller
 				'nama_wisata' => $request->nama_wisata,
 				'harga_wisata' => $request->harga_wisata,
 				'jadwal_wisata' => $request->jadwal_wisata,
-				'rating_wisata' => $request->rating_wisata,
-				'review_wisata' => $request->review_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
 				'gambar_wisata' => '/images/'.$file->getClientOriginalName()
 			]);

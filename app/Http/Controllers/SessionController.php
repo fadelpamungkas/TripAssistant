@@ -52,10 +52,10 @@ class SessionController extends Controller
     public function postRegistration(Request $request)
     {  
         request()->validate([
-        'nama_depan' => 'required',
-        'nama_belakang' => 'required',
+        'nama_depan' => 'required|string|max:10',
+        'nama_belakang' => 'required|string|max:10',
         'email' => 'required|email|unique:users',
-        'password' => 'required|min:6',
+        'password' => 'required|confirmed|string|min:8',
         'admin' => '0'
         ]);
          

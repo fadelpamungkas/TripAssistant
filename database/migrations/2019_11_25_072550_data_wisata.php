@@ -18,8 +18,8 @@ class DataWisata extends Migration
             $table->string('nama_wisata');
             $table->integer('harga_wisata');
             $table->string('jadwal_wisata');
-            $table->double('rating_wisata');
-            $table->integer('review_wisata');
+            $table->double('rating_wisata')->nullable();
+            $table->integer('review_wisata')->nullable();
             $table->text('informasi_wisata');
             $table->string('gambar_wisata');
             $table->timestamps();

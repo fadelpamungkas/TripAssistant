@@ -39,7 +39,7 @@
         <ul class="navbar-nav ml-auto">
         @if(Auth::check())
           <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+          <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
           <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <span>{{ ucfirst(Auth()->user()->nama_depan) }}</span></a></li>
             <form id="logout-form" action=" {{url('logout')}} " method="POST">
@@ -47,7 +47,7 @@
                 </form>
         @else
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/wisata" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
         @endif
           </ul>
@@ -64,6 +64,7 @@
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
               <h1 class="mb-3"><?= $p->nama_wisata ?></h1>
+              <h2><?= $p->rating_wisata ?> <span class="fa fa-star checked"></span></h2>
             </div>
           </div>
         </div>
@@ -81,7 +82,6 @@
               <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
             </p>
             <p>Rp <?= $p->harga_wisata ?> </p> 
-            <p> <?= $p->rating_wisata ?> <span class="fa fa-star checked"></span></p>
             <p> <?= $p->review_wisata ?> Riviews </p>
             <p>Jadwal : <?= $p->jadwal_wisata ?> </p>
             <h2 class="mb-3"> <?= $p->nama_wisata ?> </h2>
@@ -90,46 +90,41 @@
               <div class="col-md-12" id="map"></div>
             </div>
     @endforeach
-            
+
             <div class="pt-5 mt-5">
               <h3 class="mb-5">Reviews</h3>
+              @foreach($comment as $c)
               <ul class="comment-list">
                 <li class="comment">
                   <div class="vcard bio">
                     <img src="/images/person_1.jpg" alt="Image placeholder">
                   </div>
-                  @foreach($comment as $c)
                   <div class="comment-body">
                     <h3><?= $c->nama_user ?></h3>
-                    <div class="meta">November 27, 2019 at 2:21pm</div>
+                    <div class="meta"><?= $c->rating_comment ?><span class="fa fa-star checked"></span></div>
                     <p><?= $c->nama_comment ?></p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
-                  @endforeach
-                </li>
-<!-- 
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3>Fadel</h3>
-                    <div class="meta">Desember 12, 2019 at 2:21pm</div>
-                    <p>Keren lah bisa bisa</p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                </li> -->
+                  </li>
               </ul>
-              <!-- END comment-list -->
+              @endforeach
 
               @if(Auth::check())
               <div class="comment-form-wrap pt-5">
                 <h3 class="mb-5">Leave a comment</h3>
                 <form action="/wisata/comment" method="post"class="p-5 bg-light">
                 {{ csrf_field() }}
+                @foreach($data_wisata as $p)
+                <div class="form-group">
+                    <input type="hidden"value="<?=$p->id_wisata?>" name="id_wisata" class="form-control" readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden"value="<?=$p->nama_wisata?>" name="nama_wisata" class="form-control" readonly>
+                  </div>
+                @endforeach
                   <div class="form-group">
                     <label for="name">Nama</label>
-                    <input value="<?=Auth::user()->nama_depan?> <?=Auth::user()->nama_belakang?>" name="nama_user" class="form-control">
+                    <input value="<?=Auth::user()->nama_depan?> <?=Auth::user()->nama_belakang?>" name="nama_user" class="form-control" readonly>
                   </div>
                   <div class="form-group">
                     <label for="name">Rating Wisata</label>
@@ -178,41 +173,23 @@
       </div>
     </section> <!-- .section -->
 
-    <!-- <footer class="ftco-footer ftco-bg-dark ftco-section">
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Voyage Fellow Tourist</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <h2 class="ftco-heading-2">TripAssistant</h2>
+              <p>Make your Trip easier with us.</p>
             </div>
           </div>
+
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Book Now</h2>
+              <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Flight</a></li>
-                <li><a href="#" class="py-2 d-block">Hotels</a></li>
-                <li><a href="#" class="py-2 d-block">Tour</a></li>
-                <li><a href="#" class="py-2 d-block">Car Rent</a></li>
-                <li><a href="#" class="py-2 d-block">Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Mountains</a></li>
-                <li><a href="#" class="py-2 d-block">Cruises</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Top Deals</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Luxe Hotel</a></li>
-                <li><a href="#" class="py-2 d-block">Venice Tours</a></li>
-                <li><a href="#" class="py-2 d-block">Deluxe Hotels</a></li>
-                <li><a href="#" class="py-2 d-block">Boracay Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Fuente Villa</a></li>
-                <li><a href="#" class="py-2 d-block">Japan Tours</a></li>
-                <li><a href="#" class="py-2 d-block">Philippines Tours</a></li>
+                @foreach($data_wisata as $p)
+                <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+                @endforeach
               </ul>
             </div>
           </div>
@@ -220,10 +197,10 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Contact Information</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a></li>
-                <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
-                <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
-                <li><a href="#" class="py-2 d-block">email@email.com</a></li>
+                <li><a href="#" class="py-2 d-block">Jalan Kaliurang km 14,5</a></li>
+                <li><a href="#" class="py-2 d-block">+628000111222</a></li>
+                <li><a href="#" class="py-2 d-block">TripAssistantinfo.com</a></li>
+                <li><a href="#" class="py-2 d-block">TripAssistant@gmail.com</a></li>
               </ul>
             </div>
           </div>
@@ -238,7 +215,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 text-center"> -->
+          <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>

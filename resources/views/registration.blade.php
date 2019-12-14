@@ -54,17 +54,17 @@
                 </div> 
  
                 <div class="form-label-group">
-                  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                  <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required autocomplete="new-password">
                   <br>
                    
                   @if ($errors->has('password'))
                   <span class="error">{{ $errors->first('password') }}</span>
                   @endif  
                 </div>
-<!-- 
+
                 <div class="form-label-group">
-                  <input type="hidden" name="admin" class="form-control" value="0">
-                </div> -->
+                    <input type="password" class="form-control" id="inputconfirmation" name="confirmation" placeholder="Password Confirmation" required autocomplete="new-password">
+                <br>
 
                 <div class="form-label-group">
                 <td><input type="radio" name="jenis_kelamin" value="Pria" checked>Pria

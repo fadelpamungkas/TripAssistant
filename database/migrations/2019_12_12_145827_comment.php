@@ -18,7 +18,11 @@ class Comment extends Migration
             $table->integer('rating_comment');
             $table->string('nama_comment');
             $table->string('nama_user');
+            $table->unsignedInteger('id_wisata');
             $table->timestamps();
+        });
+        Schema::table('comment', function (Blueprint $table) {
+            $table->foreign('id_wisata')->references('id_wisata')->on('data_wisata');
         });
     }
 
