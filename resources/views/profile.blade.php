@@ -76,6 +76,11 @@
               <h2 class="h4 mb-4">Profile</h2>
             @foreach($users as $u)
             @if((Auth()->user()->email)==$u->email)
+            <div class="profile-header-container">
+                <div class="profile-header-img">
+                    <img class="rounded-circle" src="{{ $u->gambar_user }}" height="250px" width="250px">
+                </div>
+            </div>
               <label class="col mb-3 d-flex">Nama Depan</label>
               <div class="col mb-3 d-flex py-4 border" style="background: white;">
                 <div class="align-self-center">

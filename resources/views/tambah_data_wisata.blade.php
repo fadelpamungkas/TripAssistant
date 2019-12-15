@@ -44,14 +44,6 @@
 				<td>Jadwal Wisata</td>
 				<td><input type="varchar", name="jadwal_wisata" size="30" maxlength="30"></td>
 			</tr>
-			<!-- <tr>
-                <td>Rating Wisata</td>
-				<td><input type="double", name="rating_wisata" size="3" maxlength="3"></td>
-			</tr>
-			<tr>
-				<td>Review Wisata</td>
-				<td><input type="integer" name="review_wisata" size="10" maxlength="10"></td>
-			</tr> -->
 			<tr>
 				<td>Informasi Wisata</td>
 				<td><textarea name="informasi_wisata" cols="60" rows="10"></textarea></td>

@@ -98,7 +98,7 @@
               <ul class="comment-list">
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="/images/person_1.jpg" alt="Image placeholder">
+                    <img src="{{Auth()->user()->gambar_user}}" alt="Image placeholder" height="50px" width="50px">
                   </div>
                   <div class="comment-body">
                     <h3><?= $c->nama_user ?></h3>
