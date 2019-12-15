@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-    
-    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -40,17 +41,12 @@
           @if(Auth::check())
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
-            <li class="nav-item active"><a href="/about" class="nav-link">About</a></li>
-            <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
-            <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span>{{ ucfirst(Auth()->user()->nama_depan) }}</span></a></li>
-            <form id="logout-form" action=" {{url('logout')}} " method="POST">
-                    @csrf
-                </form>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            <li class="nav-item active"><a href="/profile" class="nav-link">Profile</a></li>
           @else
-            <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
-            <li class="nav-item active"><a href="/about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
           @endif
           </ul>
@@ -58,84 +54,67 @@
       </div>
     </nav>
     <!-- END nav -->
+
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/image_3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url('images/bg_3.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">Tentang kami</h1>
+              <h1 class="mb-3">Profile</h1>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- END slider -->
-
-    <section class="ftco-section-2">
-      <div class="container-fluid d-flex">
-        <div class="section-2-blocks-wrapper row no-gutters">
-          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');"></div>
-          <div class="text col-lg-6 ftco-animate">
-            <div class="text-inner align-self-start">
-              
-              <h3>Selamat Datang di TripAssistant. Kami Berdiri Sejak Tadi Pagi.</h3>
-              <p>Tim TripAssistant terdiri dari empat orang, yaitu Adi Setiawan, Billy Indra Irawan, Fadel Pamungkas, dan R. Herdjuno Pawenang K. </p>
-
-              <p>Tujuan TripAssistant ini diciptakan tidak lain tidak bukan adalah untuk memenuhi tugas dari Dosen PABW kami.</p>
-
-              <p>Yaudah slur, mungkin segitu aja tentang kami. Makasih.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ftco-section testimony-section">
+    
+    <section class="ftco-section contact-section">
+    <center>
       <div class="container">
-        <div class="row justify-content-center mb-4 pb-4">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-            <h2>Our TripAssistant Team says</h2>
+            <div class="col-md-6 pr-md-5 flex-column">
+              <h2 class="h4 mb-4">Profile</h2>
+            @foreach($users as $u)
+            @if((Auth()->user()->email)==$u->email)
+              <label class="col mb-3 d-flex">Nama Depan</label>
+              <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                <div class="align-self-center">
+                  <p class="mb-0">{{ $u->nama_depan }}</p>
+                </div>
+              </div>
+              <label class="col mb-3 d-flex">Nama Belakang</label>
+              <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                <div class="align-self-center">
+                  <p class="mb-0">{{ $u->nama_belakang }}</p>
+                </div>
+              </div>
+              <label class="col mb-3 d-flex">Email</label>
+              <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                <div class="align-self-center">
+                  <p class="mb-0">{{ $u->email }}</p>
+                </div>
+              </div>
+              <label class="col mb-3 d-flex">Jenis Kelamin</label>
+              <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                <div class="align-self-center">
+                  <p class="mb-0">{{ $u->jenis_kelamin }}</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <a href="/profile/edit/{{ $u->id_user }}" class="btn btn-primary py-3 px-5">Edit</a>
+              </div>
+              <div class="form-group">
+                <a href=" {{url('logout')}} " class="btn btn-primary py-3 px-5" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span>Logout</span></a></li>
+                    <form id="logout-form" action=" {{url('logout')}} " method="POST">
+                     @csrf
+                    </form>   
+              </div>
+            @endif
+            @endforeach
           </div>
-        </div>
-            <div class="item text-center">
-              <div class="testimony-wrap p-4 pb-4">
-                <div class="user-img mb-4" style="background-image: url(images/2.jpg)" style="border: 1px solid red;"></div>
-                <div class="text">
-                  
-                <p>Cape slur nubes</p>
-                  <p class="name">Adi</p>
-                </div>
-              </div>
             </div>
-            <div class="item text-center">
-              <div class="testimony-wrap p-4 pb-4">
-                <div class="user-img mb-4" style="background-image: url(images/1.jpg)" style="border: 1px solid red;"></div>
-                <div class="text">
-                  <p class="mb-5">Semoga nilainya bagus. aamiin. </p>
-                  <p class="name">Djuno</p>
-                </div>
-              </div>
-            </div>
-            <div class="item text-center">
-              <div class="testimony-wrap p-4 pb-3">
-                <div class="user-img mb-4" style="background-image: url(images/3.jpg)" style="border: 1px solid red;"></div>
-                <div class="text">
-                  <p class="mb-5">Pagi, siang, sore, malam mikirin tubes terooooosssssssss </p>
-                  <p class="name">Billy</p>
-                </div>
-              </div>
-            </div>
-            <div class="item text-center">
-              <div class="testimony-wrap p-4 pb-4">
-                <div class="user-img mb-4" style="background-image: url(images/4.jpg)" style="border: 1px solid red;"></div>
-                <div class="text">
-                  <p class="mb-5">Jadi gabisa bucin :( </p>
-                  <p class="name">Fadel</p>
-                </div>
-              </div>
-            </div>
+      </div>
+    </center>
     </section>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
@@ -152,7 +131,7 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-              @foreach($data_wisata as $p)
+                @foreach($data_wisata as $p)
                 <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
                 @endforeach
               </ul>
@@ -214,4 +193,4 @@
   <script src="js/main.js"></script>
     
   </body>
-</html>
+</html>  

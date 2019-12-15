@@ -4,8 +4,8 @@
     <title>TripAssistant</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700">
+    
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/css/animate.css">
@@ -23,7 +23,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/style.css">
   </head>
@@ -35,144 +35,82 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
+
         <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-        @if(Auth::check())
-          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
-          <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
-          <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <span>{{ ucfirst(Auth()->user()->nama_depan) }}</span></a></li>
-            <form id="logout-form" action=" {{url('logout')}} " method="POST">
-                    @csrf
-                </form>
-        @else
+          <ul class="navbar-nav ml-auto">
+          @if(Auth::check())
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
             <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+            <li class="nav-item active"><a href="/profile" class="nav-link">Profile</a></li>
+          @else
+            <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-        @endif
+          @endif
           </ul>
         </div>
       </div>
     </nav>
     <!-- END nav -->
+
     
-   @foreach($data_wisata as $p)
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('<?=$p->gambar_wisata?>');">
+      <div class="slider-item" style="background-image: url('/images/bg_3.jpg');">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3"><?= $p->nama_wisata ?></h1>
-              <h2><?= $p->rating_wisata ?> <span class="fa fa-star checked"></span></h2>
+              <h1 class="mb-3">Profile</h1>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- END slider -->
-   @endforeach
-
-   @foreach($data_wisata as $p)
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 ftco-animate">            
-            <p>
-              <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
-            </p>
-            <p>Rp <?= $p->harga_wisata ?> </p> 
-            <p> <?= $p->review_wisata ?> Riviews </p>
-            <p>Jadwal : <?= $p->jadwal_wisata ?> </p>
-            <h2 class="mb-3"> <?= $p->nama_wisata ?> </h2>
-            <p> <?= $p->informasi_wisata ?> </p>
-            <div class="row mt-5">
-              <div class="col-md-12" id="map"></div>
-            </div>
-    @endforeach
-
-            <div class="pt-5 mt-5">
-              <h3 class="mb-5">Reviews</h3>
-              @foreach($comment as $c)
-              <ul class="comment-list">
-                <li class="comment">
-                  <div class="vcard bio">
-                    <img src="/images/person_1.jpg" alt="Image placeholder">
-                  </div>
-                  <div class="comment-body">
-                    <h3><?= $c->nama_user ?></h3>
-                    <div class="meta"><?= $c->rating_comment ?><span class="fa fa-star checked"></span></div>
-                    <p><?= $c->nama_comment ?></p>
-                    <p><a href="#" class="reply">Reply</a></p>
-                  </div>
-                  </li>
-              </ul>
-              @endforeach
-
-              @if(Auth::check())
-              <div class="comment-form-wrap pt-5">
-                <h3 class="mb-5">Leave a comment</h3>
-                <form action="/wisata/comment" method="post"class="p-5 bg-light">
-                {{ csrf_field() }}
-                @foreach($data_wisata as $p)
-                <div class="form-group">
-                    <input type="hidden"value="<?=$p->id_wisata?>" name="id_wisata" class="form-control" readonly>
-                  </div>
-                  <div class="form-group">
-                    <input type="hidden"value="<?=$p->nama_wisata?>" name="nama_wisata" class="form-control" readonly>
-                  </div>
-                @endforeach
-                  <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input value="<?=Auth::user()->nama_depan?> <?=Auth::user()->nama_belakang?>" name="nama_user" class="form-control" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="name">Rating Wisata</label>
-                    <input type="integer" id="rating_comment" name="rating_comment" size="1" maxlength="1"><span class="fa fa-star checked"></span>
-                  </div>
-                  <div class="form-group">
-                    <label for="nama_comment">Message</label>
-                    <textarea name="nama_comment" id="nama_comment" nama="nama_comment" cols="30" rows="10" class="form-control"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <input type="submit" name="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
-                  </div>
-                </form>
+    
+    <section class="ftco-section contact-section">
+    <center>
+        <div class="container">
+            <div class="col-md-6 pr-md-5 flex-column">
+              <h2 class="h4 mb-4">Profile</h2>
+            @foreach($users as $u)
+            @if((Auth()->user()->email)==$u->email)
+	<form action="/profile/update" method="post" enctype="multipart/form-data" >
+		{{ csrf_field() }}
+		<input type="hidden" name="id" value="{{ $u->id_user}}">
+              <label class="col mb-3 d-flex">Nama Depan</label>
+              <div>
+                <input type="varchar", name="nama_depan" required="required" value="{{ $u->nama_depan }}" class="col mb-3 d-flex py-4 border" style="background: white;">
               </div>
-              @endif
-            </div>
-          </div>
-
-          <div class="col-md-4 sidebar">
-            <div class="sidebar-box ftco-animate">
-              <div class="categories">
-                <h3>Budget</h3>
-                <li><a>Ticket <span>Rp. 50.000</span></a></li>
-                <li><a>VIP Ticket <span>Rp. 70.000</span></a></li>
-                <li><a>Food <span>Rp. 20.000 - 80.000</span></a></li>
-                <li><a>Toilet <span>Rp. 2.000</span></a></li>
-                <li><a>Parking <span>Rp. 10.000</span></a></li>
+              <label class="col mb-3 d-flex">Nama Belakang</label>
+              <div>
+                <div class="align-self-center">
+                    <input type="varchar", name="nama_belakang" required="required" value="{{ $u->nama_belakang }}" class="col mb-3 d-flex py-4 border" style="background: white;">
+                </div>
               </div>
-            </div>
-
-            <div class="sidebar-box ftco-animate">
+              <label class="col mb-3 d-flex">Email</label>
+              <div>
+                <div class="align-self-center">
+                    <input type="email", name="email" required="required" value="{{ $u->email }}" class="col mb-3 d-flex py-4 border" style="background: white;">
+                </div>
+              </div>
+              <label class="col mb-3 d-flex">Password</label>
+              <div>
+                <div class="align-self-center">
+                    <input type="password", name="password" required="required" value="{{ $u->password }}" class="col mb-3 d-flex py-4 border" style="background: white;">
+                </div>
+              </div>
               <div class="form-group">
-                <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
+                <input class="btn btn-primary py-3 px-5" type="submit" name="submit" value="Edit Profile">
               </div>
+    </form>
+            @endif
+            @endforeach
             </div>
-
-            <div class="sidebar-box ftco-animate">
-              <div class="form-group">
-                <input type="submit" value="Nearby" class="btn btn-primary py-3 px-5">
-              </div>
-            </div>
-
-          </div>
-
         </div>
-      </div>
-    </section> <!-- .section -->
+    </center>
+    </section>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
@@ -219,7 +157,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
@@ -248,6 +186,6 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
+    
   </body>
-
-</html>
+</html>  

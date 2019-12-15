@@ -55,7 +55,7 @@ class SessionController extends Controller
         'nama_depan' => 'required|string|max:10',
         'nama_belakang' => 'required|string|max:10',
         'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed|string|min:8',
+        'password' => 'required|string|min:8',
         'admin' => '0'
         ]);
          
@@ -64,15 +64,6 @@ class SessionController extends Controller
         $check = $this->create($data);
        
         return Redirect::to("/")->withSuccess('Great! You have Successfully loggedin');
-    }
-     
-    public function dashboard()
-    {
- 
-      if(Auth::check()){
-        return view('dashboard');
-      }
-       return Redirect::to("login")->withSuccess('Opps! You do not have access');
     }
  
     public function create(array $data)

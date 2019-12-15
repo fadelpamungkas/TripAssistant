@@ -26,17 +26,22 @@ Route::get('/data_wisata/hapus/{id}','DataWisataController@hapus');
 Route::get('/login', 'SessionController@index');
 Route::post('/post-login', 'SessionController@postLogin'); 
 Route::get('/registration', 'SessionController@registration');
-Route::post('/post-registration', 'SessionController@postRegistration'); 
-Route::get('/dashboard', 'SessionController@dashboard'); 
+Route::post('/post-registration', 'SessionController@postRegistration');  
 Route::post('/logout', 'SessionController@logout');
 
 Route::get('wisata/{nama}','DataWisataController@wisata');
 Route::get('/cari','DataWisataController@cari');
 Route::post('/wisata/comment','DataWisataController@comment');
 
+Route::get('/profile', 'ProfileController@tampilan_data');
+Route::get('/profile/edit/{id}','ProfileController@edit');
+Route::post('/profile/update','ProfileController@update');
+Route::get('/profile/hapus/{id}','ProfileController@hapus');
+
+
 Route::get('/about','HomeController@about');
 
 
-Route::get('/blog', function(){
-    return view('blog');
+Route::get('/contact', function(){
+    return view('contact');
 });
