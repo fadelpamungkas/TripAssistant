@@ -7,13 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 class DataWisataController extends Controller
 {
+
+	public function buy($nama)
+	{
+    	$data_wisata = DB::table('data_wisata')->where('nama_wisata',$nama)->get();
+		$users = DB::table('users')->get();
+		return view('buy_ticket',['data_wisata' => $data_wisata, 'users' => $users]);
+	}
+
 	
 	public function wisata($nama)
     {
     	$data_wisata = DB::table('data_wisata')->where('nama_wisata',$nama)->get();
 		$users = DB::table('users')->get();
 		foreach($data_wisata as $p){
-		$comment = DB::table('comment')->where('id_wisata','=',$p->id_wisata)->get();
+			$comment = DB::table('comment')->where('id_wisata','=',$p->id_wisata)->get();
 		}
     	return view('wisata',['data_wisata' => $data_wisata, 'users' => $users, 'comment' => $comment]);
 	}

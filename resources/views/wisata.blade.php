@@ -156,9 +156,11 @@
             </div>
 
             <div class="sidebar-box ftco-animate">
-              <div class="form-group">
-                <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
-              </div>
+              <form action="/wisata/<?=$p->nama_wisata?>/buy" method="GET" enctype="multipart/form-data">
+                <div class="form-group">
+                  <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
+                </div>
+              </form>
             </div>
 
             <div class="sidebar-box ftco-animate">
@@ -188,7 +190,7 @@
               <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
                 @foreach($data_wisata as $p)
-                <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+                <li><a href="/wisata/{{$p->nama_wisata}}" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
                 @endforeach
               </ul>
             </div>
@@ -244,7 +246,7 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/bootstrap-datepicker.js"></script>
   <script src="/js/jquery.timepicker.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&sensor=false"></script>
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
   </body>

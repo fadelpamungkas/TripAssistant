@@ -55,7 +55,8 @@ class SessionController extends Controller
         'nama_depan' => 'required|string|max:10',
         'nama_belakang' => 'required|string|max:10',
         'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed|string|min:8',
+        'password' => 'required|required_with:confirmation|same:confirmation|string|min:8',
+        'confirmation' => 'required|min:8',
         'admin' => '0'
         ]);
          

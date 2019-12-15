@@ -106,7 +106,9 @@
                 <div class="block-17">
                   <form action="/cari" method="GET" enctype="multipart/form-data" class="d-block d-lg-flex">
                     <div class="fields d-block d-lg-flex">
-                      <div class="textfield-search one-third"><input type="text" name="cari" class="form-control" placeholder="Search Location"></div>
+                      <div class="textfield-search one-third">
+                        <input type="text" name="cari" class="form-control" placeholder="Search Location">
+                      </div>
                       <input type="submit" class="search-submit btn btn-primary" value="Find">  
                     </div>
                   </form>
