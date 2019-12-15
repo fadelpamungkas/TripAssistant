@@ -63,6 +63,11 @@
                 </div>
 
                 <div class="form-label-group">
+                  <input type="password" name="confirmation" id="inputConfirmation" class="form-control" placeholder="Confirmation Password">
+                  <br>  
+                </div>
+
+                <div class="form-label-group">
                 <td><input type="radio" name="jenis_kelamin" value="Pria" checked>Pria
                 <input type="radio" name="jenis_kelamin" value="Wanita">Wanita
  

@@ -98,7 +98,7 @@
               <label class="col mb-3 d-flex">Password</label>
               <div>
                 <div class="align-self-center">
-                    <input type="password", name="password" required="required" value="{{ $u->password }}" class="col mb-3 d-flex py-4 border" style="background: white;">
+                    <input type="password", name="password" required="required" class="col mb-3 d-flex py-4 border" style="background: white;" placeholder="New Password">
                 </div>
               </div>
               <div class="form-group">
