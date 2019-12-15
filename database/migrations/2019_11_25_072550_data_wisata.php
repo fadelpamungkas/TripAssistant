@@ -22,6 +22,8 @@ class DataWisata extends Migration
             $table->integer('review_wisata')->nullable();
             $table->text('informasi_wisata');
             $table->string('gambar_wisata');
+            $table->double('latitude');
+            $table->double('longitude');
             $table->timestamps();
         });
     }
