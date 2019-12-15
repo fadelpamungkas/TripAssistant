@@ -30,6 +30,7 @@ Route::post('/post-registration', 'SessionController@postRegistration');
 Route::post('/logout', 'SessionController@logout');
 
 Route::get('wisata/{nama}','DataWisataController@wisata');
+Route::get('wisata/{nama}/buy','DataWisataController@buy');
 Route::get('/cari','DataWisataController@cari');
 Route::post('/wisata/comment','DataWisataController@comment');
 
