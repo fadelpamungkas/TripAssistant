@@ -44,18 +44,18 @@
 				<td><input type="varchar " name="jadwal_wisata" required="required" value="{{ $p->jadwal_wisata }}" size="30" maxlength="30"></td>
 			</tr>
 			<tr>
-				<td>Rating Wisata</td>
-				<td><input type="double" name="rating_wisata" required="required" value="{{ $p->rating_wisata }}" size="3" maxlength="3"></td>
+				<td>Informasi Wisata</td>
+				<td><textarea name="informasi_wisata" required="required" value="{{ $p->informasi_wisata }}" cols="60" rows="10"></textarea></td>
+			</tr>
+            <tr>
+			<tr>
+				<td>Latitude</td>
+				<td><input type="double", name="latitude"></td>
 			</tr>
 			<tr>
-				<td>Review Wisata</td>
-				<td><input type="integer" name="review_wisata" required="required" value="{{ $p->review_wisata }}" size="10" maxlength="10"></td>
-            </tr>
-            <tr>
-				<td>Informasi Wisata</td>
-				<td><input type="text" name="informasi_wisata" required="required" value="{{ $p->informasi_wisata }}"></td>
-            </tr>
-            <tr>
+				<td>Longitude</td>
+				<td><input type="double", name="longitude"></td>
+			</tr>
 				<td>Gambar Wisata</td>
                 <td><input type="file" name="gambar_wisata" required="required" value="{{ $p->gambar_wisata }}"></td>
 			</tr>

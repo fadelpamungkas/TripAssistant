@@ -48,6 +48,14 @@
 				<td>Informasi Wisata</td>
 				<td><textarea name="informasi_wisata" cols="60" rows="10"></textarea></td>
 			</tr>
+			<tr>
+				<td>Latitude</td>
+				<td><input type="double", name="latitude"></td>
+			</tr>
+			<tr>
+				<td>Longitude</td>
+				<td><input type="double", name="longitude"></td>
+			</tr>
             <tr>
             	<td>Gambar Wisata</td>
 				<td><input type="file" name="gambar_wisata"></td>

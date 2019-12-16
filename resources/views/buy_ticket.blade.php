@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>a</title>
+    <title>TripAssistant</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -43,10 +43,8 @@
       
       $snapToken = \Midtrans\Snap::getSnapToken($params);
      ?>
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap">
-</script>
+     
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript">
     var map;
     var marker;
@@ -103,22 +101,28 @@
   </head>
   <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="/"></a>
+        <a class="navbar-brand" href="/">TripAssistant</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
-
         <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">
+        @if(Auth::check())
+          <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
+          <li class="nav-item"><a href="/profile" class="nav-link">Profile</a></li>
+          <li class="nav-item"><a href=" {{url('logout')}} " class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <span>{{ ucfirst(Auth()->user()->nama_depan) }}</span></a></li>
+            <form id="logout-form" action=" {{url('logout')}} " method="POST">
+                    @csrf
+                </form>
+        @else
             <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="/tours" class="nav-link">Tours</a></li>
-            <li class="nav-item"><a href="/hotels" class="nav-link">Hotels</a></li>
-            <li class="nav-item"><a href="/services" class="nav-link">Services</a></li>
-            <li class="nav-item"><a href="/blog" class="nav-link">Blog</a></li>
-            <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
-            <li class="nav-item active"><a href="/contact" class="nav-link">Contact</a></li>
+            <li class="nav-item"><a href="/cari" class="nav-link">Wisata</a></li>
+            <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+        @endif
           </ul>
         </div>
       </div>
@@ -126,7 +130,7 @@
     <!-- END nav -->
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url('/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
@@ -145,27 +149,19 @@
           <div class="col-md-6 pr-md-5 flex-column">
             <div class="row d-block flex-row">
             @foreach($users as $u)
+            @if((Auth()->user()->email)==$u->email)
               <h2 class="h4 mb-4">Account Detail</h2>
               <div class="col mb-3 d-flex py-4 border" style="background: white;">
                 <div class="align-self-center">
-                  <p class="mb-0"><span>Nama:</span> <?=$u->nama_depan?> <?=$u->nama_belakang?></p>
+                  <p class="mb-0">Nama : {{ $u->nama_depan }} {{ $u->nama_belakang }}</p>
                 </div>
               </div>
               <div class="col mb-3 d-flex py-4 border" style="background: white;">
                 <div class="align-self-center">
-                  <p class="mb-0"><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                  <p class="mb-0">Email : {{ $u->email }}</p>
                 </div>
               </div>
-              <div class="col mb-3 d-flex py-4 border" style="background: white;">
-                <div class="align-self-center">
-                  <p class="mb-0"><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                </div>
-              </div>
-              <div class="col mb-3 d-flex py-4 border" style="background: white;">
-                <div class="align-self-center">
-                  <p class="mb-0"><span>Website</span> <a href="#">yoursite.com</a></p>
-                </div>
-              </div>
+              @endif
               @endforeach
             </div>
           </div>
@@ -196,8 +192,8 @@
                 
             </form>
             <div class="form-group">
-                <button id="pay-button" type="submit" value="Buy" class="btn btn-primary py-3 px-5">
-              </div>
+                <button id="pay-button" type="submit" class="btn btn-success py-3 px-5">Buy</button>
+            </div>
           </div>
         </div>
         <div class="row mt-5">
@@ -211,36 +207,18 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Voyage Fellow Tourist</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <h2 class="ftco-heading-2">TripAssistant</h2>
+              <p>Make your Trip easier with us.</p>
             </div>
           </div>
+
           <div class="col-md">
              <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Book Now</h2>
+              <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Flight</a></li>
-                <li><a href="#" class="py-2 d-block">Hotels</a></li>
-                <li><a href="#" class="py-2 d-block">Tour</a></li>
-                <li><a href="#" class="py-2 d-block">Car Rent</a></li>
-                <li><a href="#" class="py-2 d-block">Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Mountains</a></li>
-                <li><a href="#" class="py-2 d-block">Cruises</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Top Deals</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Luxe Hotel</a></li>
-                <li><a href="#" class="py-2 d-block">Venice Tours</a></li>
-                <li><a href="#" class="py-2 d-block">Deluxe Hotels</a></li>
-                <li><a href="#" class="py-2 d-block">Boracay Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Beach &amp; Resorts</a></li>
-                <li><a href="#" class="py-2 d-block">Fuente Villa</a></li>
-                <li><a href="#" class="py-2 d-block">Japan Tours</a></li>
-                <li><a href="#" class="py-2 d-block">Philippines Tours</a></li>
+                @foreach($data_wisata as $p)
+                <li><a href="/wisata/{{$p->nama_wisata}}" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+                @endforeach
               </ul>
             </div>
           </div>
@@ -248,10 +226,10 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Contact Information</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">198 West 21th Street, Suite 721 New York NY 10016</a></li>
-                <li><a href="#" class="py-2 d-block">+ 1235 2355 98</a></li>
-                <li><a href="#" class="py-2 d-block">info@yoursite.com</a></li>
-                <li><a href="#" class="py-2 d-block">email@email.com</a></li>
+                <li><a href="#" class="py-2 d-block">Jalan Kaliurang km 14,5</a></li>
+                <li><a href="#" class="py-2 d-block">+628000111222</a></li>
+                <li><a href="#" class="py-2 d-block">TripAssistantinfo.com</a></li>
+                <li><a href="#" class="py-2 d-block">TripAssistant@gmail.com</a></li>
               </ul>
             </div>
           </div>
@@ -269,7 +247,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
@@ -295,7 +273,7 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/bootstrap-datepicker.js"></script>
   <script src="/js/jquery.timepicker.min.js"></script>
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&sensor=false"></script> -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap"></script>  <script src="/js/google-map.js"></script>
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-QSM7g2km1Jr_S0Vz"></script>

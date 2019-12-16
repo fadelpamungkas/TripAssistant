@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Transaksi;
+use App\DataWisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,8 +77,8 @@ class DataWisataController extends Controller
 				'jadwal_wisata' => $request->jadwal_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
 				'gambar_wisata' => '/images/'.$file->getClientOriginalName(),
-				'latitude' => '-7.790121',
-				'longitude' => '110.369417'
+				'latitude' => $request->latitude,
+				'longitude' => $request->longitude
 			]);
 
 		}
@@ -86,7 +87,8 @@ class DataWisataController extends Controller
 	}
 	
     public function buy_detail(Request $request){
-		
+		$data_wisata = DB::table('data_wisata')->get();
+
 		$transaksi = new Transaksi();
 		$transaksi->id_tiket = request('id_tiket');
 		$transaksi->nama_wisata = request('nama_wisata');
@@ -106,7 +108,7 @@ class DataWisataController extends Controller
 		// }
     	$users = DB::table('users')->get();
 
-		return view('buy_ticket', ['transaksi' => $transaksi, 'users' => $users]);
+		return view('buy_ticket', ['transaksi' => $transaksi, 'users' => $users, 'data_wisata' => $data_wisata]);
     }
 
 	public function update(Request $request){
@@ -121,7 +123,9 @@ class DataWisataController extends Controller
 				'harga_wisata' => $request->harga_wisata,
 				'jadwal_wisata' => $request->jadwal_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
-				'gambar_wisata' => '/images/'.$file->getClientOriginalName()
+				'gambar_wisata' => '/images/'.$file->getClientOriginalName(),
+				'latitude' => $request->latitude,
+				'longitude' => $request->longitude
 			]);
 		}
 

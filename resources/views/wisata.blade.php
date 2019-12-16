@@ -151,11 +151,13 @@
             <div class="sidebar-box ftco-animate">
               <div class="categories">
                 <h3>Budget</h3>
-                <li><a>Ticket <span>Rp. 50.000</span></a></li>
+                @foreach($data_wisata as $p)
+                <li><a>Ticket <span>Rp. <?=$p->harga_wisata?></span></a></li>
                 <li><a>VIP Ticket <span>Rp. 70.000</span></a></li>
                 <li><a>Food <span>Rp. 20.000 - 80.000</span></a></li>
                 <li><a>Toilet <span>Rp. 2.000</span></a></li>
                 <li><a>Parking <span>Rp. 10.000</span></a></li>
+                @endforeach
               </div>
             </div>
             <div class="sidebar-box ftco-animate">
@@ -168,15 +170,19 @@
                   <div class="form-group">
                     <input type="hidden"value="<?=$p->nama_wisata?>" name="nama_wisata" class="form-control" readonly>
                   </div>
+              @if(Auth::check())
+                <label for="date">Tanggal Tiket</label>
                 <div class="form-group">
                   <input type="date" name="date" class="form-control" placeholder="Date">
                 </div>
+                <label for="person">Jumlah Tiket</label>
                 <div class="form-group">
                   <input type="text" name="person" class="form-control" placeholder="Person">
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
+                  <input type="submit" value="Buy" class="btn btn-success py-3 px-5">
                 </div>
+              @endif
                 @endforeach
               </form>
             </div>
@@ -237,12 +243,19 @@
       </div>
     </footer>
 
+    <?php 
+    foreach($data_wisata as $d){
+      $latitude = $d->latitude;
+      $longitude = $d->longitude; 
+    }
+    ?>
+
     <div id="map"></div>
     <script>
     // Initialize and add the map
     function initMap() {
       // The location of Uluru
-      var uluru = {lat: -25.344, lng: 131.036};
+      var uluru = {lat: {{$latitude}}, lng: {{$longitude}}};
       // The map, centered at Uluru
       var map = new google.maps.Map(
           document.getElementById('map'), {zoom: 4, center: uluru});
@@ -250,10 +263,6 @@
       var marker = new google.maps.Marker({position: uluru, map: map});
     }
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap">
-    </script>
-    
   
 
   <!-- loader -->
@@ -274,8 +283,7 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/bootstrap-datepicker.js"></script>
   <script src="/js/jquery.timepicker.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&sensor=false"></script>
-  <script src="/js/google-map.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap"></script>  <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
   </body>
 
