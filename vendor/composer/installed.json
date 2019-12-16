@@ -1234,6 +1234,57 @@
         ]
     },
     {
+        "name": "midtrans/midtrans-php",
+        "version": "2.0.1",
+        "version_normalized": "2.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Midtrans/midtrans-php.git",
+            "reference": "71217bdf2366dbb692fc6ff1bdaa3a485d1a5425"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Midtrans/midtrans-php/zipball/71217bdf2366dbb692fc6ff1bdaa3a485d1a5425",
+            "reference": "71217bdf2366dbb692fc6ff1bdaa3a485d1a5425",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "5.7.*",
+            "psy/psysh": "0.4.*"
+        },
+        "time": "2019-11-25T10:47:20+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Midtrans\\": "Midtrans/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Andri Setiawan",
+                "email": "andri.setiawan@veritrans.co.id"
+            },
+            {
+                "name": "Alvin Litani",
+                "email": "alvin.litani@veritrans.co.id"
+            },
+            {
+                "name": "Ismail Faruqi",
+                "email": "ismail.faruqi@veritrans.co.id"
+            }
+        ],
+        "description": "PHP Wrapper for Midtrans Payment API.",
+        "homepage": "https://midtrans.com"
+    },
+    {
         "name": "mockery/mockery",
         "version": "1.3.0",
         "version_normalized": "1.3.0.0",

@@ -158,12 +158,26 @@
                 <li><a>Parking <span>Rp. 10.000</span></a></li>
               </div>
             </div>
-
             <div class="sidebar-box ftco-animate">
-              <form action="/wisata/<?=$p->nama_wisata?>/buy" method="GET" enctype="multipart/form-data">
+              <form action="/wisata/buy_detail" method="post">
+		          {{ csrf_field() }}
+              @foreach($data_wisata as $p)    
+                  <div class="form-group">
+                    <input type="hidden"value="<?=$p->harga_wisata?>" name="harga_wisata" class="form-control" readonly>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden"value="<?=$p->nama_wisata?>" name="nama_wisata" class="form-control" readonly>
+                  </div>
+                <div class="form-group">
+                  <input type="date" name="date" class="form-control" placeholder="Date">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="person" class="form-control" placeholder="Person">
+                </div>
                 <div class="form-group">
                   <input type="submit" value="Buy" class="btn btn-primary py-3 px-5">
                 </div>
+                @endforeach
               </form>
             </div>
           </div>
@@ -222,11 +236,29 @@
         </div>
       </div>
     </footer>
+
+    <div id="map"></div>
+    <script>
+    // Initialize and add the map
+    function initMap() {
+      // The location of Uluru
+      var uluru = {lat: -25.344, lng: 131.036};
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 4, center: uluru});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: uluru, map: map});
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap">
+    </script>
     
   
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
 
 
   <script src="/js/jquery.min.js"></script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,12 +75,38 @@ class DataWisataController extends Controller
 				'harga_wisata' => $request->harga_wisata,
 				'jadwal_wisata' => $request->jadwal_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
-				'gambar_wisata' => '/images/'.$file->getClientOriginalName()
+				'gambar_wisata' => '/images/'.$file->getClientOriginalName(),
+				'latitude' => '-7.790121',
+				'longitude' => '110.369417'
 			]);
 
 		}
 
 		return redirect('/data_wisata');
+	}
+	
+    public function buy_detail(Request $request){
+		
+		$transaksi = new Transaksi();
+		$transaksi->id_tiket = request('id_tiket');
+		$transaksi->nama_wisata = request('nama_wisata');
+		$transaksi->tanggal_tiket = request('date');
+		$transaksi->jumlah_tiket = request('person');
+		$transaksi->harga_wisata = request('harga_wisata') * request('person');
+			
+		DB::table('transaksi')->insert([
+			'nama_wisata' => $transaksi->nama_wisata,
+			'tanggal_tiket' => $transaksi->tanggal_tiket,
+			'jumlah_tiket' => $transaksi->jumlah_tiket,
+			'harga_wisata' => $transaksi->harga_wisata
+		]);
+		
+		// foreach($trans as $t){
+		// 	$transaksi = DB::table('transaksi')->where('id_tiket', '=', $t->id_tiket)->get();
+		// }
+    	$users = DB::table('users')->get();
+
+		return view('buy_ticket', ['transaksi' => $transaksi, 'users' => $users]);
     }
 
 	public function update(Request $request){
