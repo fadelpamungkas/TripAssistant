@@ -25,6 +25,81 @@
     <link rel="stylesheet" href="/css/flaticon.css">
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/style.css">
+    <?=
+            // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = 'SB-Mid-server-I7CMfpDew3b1hY4QcqR5nj6r';
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
+        $params = array(
+          'transaction_details' => array(
+              'order_id' => rand(),
+              'gross_amount' => $transaksi->harga_wisata,
+          )
+      );
+      
+      $snapToken = \Midtrans\Snap::getSnapToken($params);
+     ?>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap">
+</script>
+<script type="text/javascript">
+    var map;
+    var marker;
+    var myLatlng = new google.maps.LatLng(-7.790121, 110.369417);
+    var geocoder = new google.maps.Geocoder();
+    var infowindow = new google.maps.InfoWindow();
+    function initialize(){
+    var mapOptions = {
+    zoom: 14,
+    center: myLatlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    marker = new google.maps.Marker({
+    map: map,
+    position: myLatlng,
+    draggable: true
+    });
+
+    geocoder.geocode({'latLng': myLatlng }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+    if (results[0]) {
+    $('#latitude,#longitude').show();
+    $('#address').val(results[0].formatted_address);
+    $('#latitude').val(marker.getPosition().lat());
+    $('#longitude').val(marker.getPosition().lng());
+    infowindow.setContent(results[0].formatted_address);
+    infowindow.open(map, marker);
+    }
+    }
+    });
+
+    google.maps.event.addListener(marker, 'dragend', function() {
+
+    geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+    if (results[0]) {
+    $('#address').val(results[0].formatted_address);
+    $('#latitude').val(marker.getPosition().lat());
+    $('#longitude').val(marker.getPosition().lng());
+    infowindow.setContent(results[0].formatted_address);
+    infowindow.open(map, marker);
+    }
+    }
+    });
+    });
+
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    
   </head>
   <body>
     
@@ -69,7 +144,6 @@
         <div class="row block-9 mb-4">
           <div class="col-md-6 pr-md-5 flex-column">
             <div class="row d-block flex-row">
-            
             @foreach($users as $u)
               <h2 class="h4 mb-4">Account Detail</h2>
               <div class="col mb-3 d-flex py-4 border" style="background: white;">
@@ -97,29 +171,34 @@
           </div>
 
           <div class="col-md-6">
-            @foreach($data_wisata as $p)
-            <h2 class="h4 mb-4">Buy</h2>
             <form action="/wisata/{nama}/buy">
-               <div class="align-self-center">
-                <input class="col mb-3 d-flex py-4 border" style="background: white;" class="form-control" value="{{$p->nama_wisata}}" readonly>
-               </div>
-               <div class="align-self-center">
-                <input class="col mb-3 d-flex py-4 border" style="background: white;" type="date" name="date" class="form-control" placeholder="Date">
-               </div>
-               <div class="align-self-center">
-                <input class="col mb-3 d-flex py-4 border" style="background: white;" type="text" name="person" class="form-control" placeholder="Person">
-              </div>
-              <div >
-                <div class="align-self-center">
-                <input class="col mb-3 d-flex py-4 border" style="background: white;" type="text" name="price" id="" cols="30" rows="7" class="form-control" value="Rp {{$p->harga_wisata}}" readonly>
+                <h2 class="h4 mb-4">Buy Detail</h2>
+                <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                  <div class="align-self-center">
+                    <p class="mb-0"><span>Wisata:</span> <?=$transaksi->nama_wisata?></p>
+                  </div>
                 </div>
-              </div>
-                <div class="align-self-center">
-                <input type="submit" value="Buy Ticket" class="btn btn-primary py-3 px-5">
-              </div>
+                <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                  <div class="align-self-center">
+                    <p class="mb-0"><span>Tanggal:</span> <?=$transaksi->tanggal_tiket?></p>
+                  </div>
+                </div>
+                <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                  <div class="align-self-center">
+                    <p class="mb-0"><span>Jumlah Tiket:</span> <?=$transaksi->jumlah_tiket?></p>
+                  </div>
+                </div>
+                <div class="col mb-3 d-flex py-4 border" style="background: white;">
+                  <div class="align-self-center">
+                    <p class="mb-0"><span>Total Harga:</span> <?=$transaksi->harga_wisata?></p>
+                  </div>
+                </div>
+                
             </form>
+            <div class="form-group">
+                <button id="pay-button" type="submit" value="Buy" class="btn btn-primary py-3 px-5">
+              </div>
           </div>
-          @endforeach
         </div>
         <div class="row mt-5">
           <div class="col-md-12" id="map"></div>
@@ -216,9 +295,29 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/bootstrap-datepicker.js"></script>
   <script src="/js/jquery.timepicker.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&sensor=false"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&sensor=false"></script> -->
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
-    
+  <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-QSM7g2km1Jr_S0Vz"></script>
+    <script type="text/javascript">
+      document.getElementById('pay-button').onclick = function(){
+        // SnapToken acquired from previous step
+        snap.pay('<?=$snapToken?>', {
+          // Optional
+          onSuccess: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onPending: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          },
+          // Optional
+          onError: function(result){
+            /* You may add your own js here, this is just example */ document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+          }
+        });
+      };
+    </script>
+
   </body>
 </html>
