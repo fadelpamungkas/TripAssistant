@@ -53,7 +53,8 @@ class DataWisataController extends Controller
 			'id_wisata' => $request->id_wisata,
 			'nama_user' => $request->nama_user,
 			'rating_comment' => $request->rating_comment,
-			'nama_comment' => $request->nama_comment
+			'nama_comment' => $request->nama_comment,
+			'gambar_comment' => $request->gambar_comment
 		]);
 		DB::table('comment')->where('id_wisata','=',$request->id_wisata)->get();
 		return back();

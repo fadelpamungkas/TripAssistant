@@ -189,22 +189,14 @@
         </div>
       </div>
       <div class="container">
+      <center> 
         <div class="row">
-          <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services d-block text-center">
-              <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-web"></span></div></div>
-              <div class="media-body p-2">
-                <h3 class="heading">Membuka TripAssistant</h3>
-                <h2>1</h2>
-              </div>
-            </div>      
-          </div>  
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
               <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-find"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Mencari Wisata</h3>
-                <h2>2</h2>
+                <h2>1</h2>
               </div>
             </div>      
           </div>
@@ -213,7 +205,7 @@
               <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-ticket"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Membeli Tiket Wisata</h3>
-                <h2>3</h2>
+                <h2>2</h2>
               </div>
             </div>    
           </div>
@@ -222,15 +214,16 @@
               <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-traveler-with-a-suitcase"></span></div></div>
               <div class="media-body p-2">
                 <h3 class="heading">Pergi ke Wisata</h3>
-                <h2>4</h2>
+                <h2>3</h2>
               </div>
             </div>      
           </div>
         </div>
+      </center>
       </div>
-      </div>
+      
     </section>
-
+    
     
     <section class="ftco-section">
       <div class="container-fluid">
