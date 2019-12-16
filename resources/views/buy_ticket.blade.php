@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/css/icomoon.css">
     <link rel="stylesheet" href="/css/style.css">
     <?=
-            // Set your Merchant Server Key
+            // Set your Merchant Server Keyx
         \Midtrans\Config::$serverKey = 'SB-Mid-server-I7CMfpDew3b1hY4QcqR5nj6r';
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = false;
@@ -43,61 +43,6 @@
       
       $snapToken = \Midtrans\Snap::getSnapToken($params);
      ?>
-     
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript">
-    var map;
-    var marker;
-    var myLatlng = new google.maps.LatLng(-7.790121, 110.369417);
-    var geocoder = new google.maps.Geocoder();
-    var infowindow = new google.maps.InfoWindow();
-    function initialize(){
-    var mapOptions = {
-    zoom: 14,
-    center: myLatlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-    marker = new google.maps.Marker({
-    map: map,
-    position: myLatlng,
-    draggable: true
-    });
-
-    geocoder.geocode({'latLng': myLatlng }, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-    if (results[0]) {
-    $('#latitude,#longitude').show();
-    $('#address').val(results[0].formatted_address);
-    $('#latitude').val(marker.getPosition().lat());
-    $('#longitude').val(marker.getPosition().lng());
-    infowindow.setContent(results[0].formatted_address);
-    infowindow.open(map, marker);
-    }
-    }
-    });
-
-    google.maps.event.addListener(marker, 'dragend', function() {
-
-    geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-    if (results[0]) {
-    $('#address').val(results[0].formatted_address);
-    $('#latitude').val(marker.getPosition().lat());
-    $('#longitude').val(marker.getPosition().lng());
-    infowindow.setContent(results[0].formatted_address);
-    infowindow.open(map, marker);
-    }
-    }
-    });
-    });
-
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-    
   </head>
   <body>
     
@@ -273,7 +218,6 @@
   <script src="/js/jquery.animateNumber.min.js"></script>
   <script src="/js/bootstrap-datepicker.js"></script>
   <script src="/js/jquery.timepicker.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBg6UAP_lCBq5ZYJu69I3N8uXENjoKBHrU&callback=initMap"></script>  <script src="/js/google-map.js"></script>
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
   <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-QSM7g2km1Jr_S0Vz"></script>

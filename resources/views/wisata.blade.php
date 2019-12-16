@@ -82,7 +82,7 @@
             <p>
               <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
             </p>
-            <p>Rp <?= $p->harga_wisata ?> </p> 
+            <!-- <p>Rp <?= $p->harga_wisata ?> </p>  -->
             <!-- <p> <?= $p->review_wisata ?> Riviews </p> -->
             <p>Jadwal : <?= $p->jadwal_wisata ?> </p>
             <h2 class="mb-3"> <?= $p->nama_wisata ?> </h2>
