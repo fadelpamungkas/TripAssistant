@@ -34,9 +34,11 @@ class DataWisataController extends Controller
  
 	}
 
-	public function tampilan_data()
+	public function tampilan_data(Request $request)
     {
-    	$data_wisata = DB::table('data_wisata')->get();
+		$cari = $request->cari;
+		$data_wisata = DB::table('data_wisata')->where('nama_wisata','like',"%".$cari."%")->paginate();
+    	// $data_wisata = DB::table('data_wisata')->get();
 		$users = DB::table('users')->get();
     	return view('tampilan_data_wisata_admin',['data_wisata' => $data_wisata, 'users' => $users]);
 	}
