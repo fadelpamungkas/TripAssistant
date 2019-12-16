@@ -78,7 +78,10 @@
             @if((Auth()->user()->email)==$u->email)
 	<form action="/profile/update" method="post" enctype="multipart/form-data" >
 		{{ csrf_field() }}
-		<input type="hidden" name="id" value="{{ $u->id_user}}">
+        <input type="hidden" name="id" value="{{ $u->id_user}}">
+                <div class="form-group">
+                    <input type="file" class="form-control-file" name="gambar_user" id="gambar_user" aria-describedby="fileHelp">
+                </div>
               <label class="col mb-3 d-flex">Nama Depan</label>
               <div>
                 <input type="varchar", name="nama_depan" required="required" value="{{ $u->nama_depan }}" class="col mb-3 d-flex py-4 border" style="background: white;">
@@ -98,7 +101,7 @@
               <label class="col mb-3 d-flex">Password</label>
               <div>
                 <div class="align-self-center">
-                    <input type="password", name="password" required="required" class="col mb-3 d-flex py-4 border" style="background: white;" placeholder="New Password">
+                    <input type="password", name="password" class="col mb-3 d-flex py-4 border" style="background: white;" placeholder="New Password">
                 </div>
               </div>
               <div class="form-group">
@@ -186,6 +189,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="/js/google-map.js"></script>
   <script src="/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
     
   </body>
 </html>  

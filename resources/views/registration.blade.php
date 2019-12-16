@@ -15,14 +15,20 @@
  
 </head>
 <body>
+@if(Auth::check())
+  <a href="/"></a> 
+@else 
+<br>
+<br>
+<br>
 <div class="container-fluid">
   <div class="row no-gutter">
-    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="d-none d-md-flex col-md-4 col-lg-4 mx-auto" style="background-image: url('images/tripassistant.jpg');  background-repeat: no-repeat; background-size: 400px;"></div>
     <div class="col-md-8 col-lg-6">
       <div class="login d-flex align-items-center py-5">
         <div class="container">
           <div class="row">
-            <div class="col-md-9 col-lg-8 mx-auto">
+            <div class="col-md-9 col-lg-8">
               <h3 class="login-heading mb-4">Register here!</h3>
                <form action="{{url('post-registration')}}" method="POST" id="regForm">
                  {{ csrf_field() }}
@@ -75,6 +81,7 @@
                 <div class="text-center">If you have an account?
                   <a class="small" href="{{url('login')}}">Sign In</a></div>
               </form>
+              
             </div>
           </div>
         </div>
@@ -82,6 +89,6 @@
     </div>
   </div>
 </div>
- 
+@endif
 </body>
 </html>

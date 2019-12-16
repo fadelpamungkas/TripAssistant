@@ -60,12 +60,12 @@
     <!-- END nav -->
     
     <section class="home-slider owl-carousel">
-      <div class="slider-item" style="background-image: url('images/image_3.jpg');" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url('images/image_1.jpg');" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
           <div class="row slider-text align-items-center">
             <div class="col-md-7 col-sm-12 ftco-animate">
-              <h1 class="mb-3">Tentang kami</h1>
+              <h1 class="mb-3">Hawlymawla</h1>
             </div>
           </div>
         </div>
@@ -75,17 +75,12 @@
 
     <section class="ftco-section-2">
       <div class="container-fluid d-flex">
-        <div class="section-2-blocks-wrapper row no-gutters">
-          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/pantai.jpg');"></div>
+        <div class="section-2-blocks-wrapper row">
+          <div class="img col-sm-12 col-lg-6" style="background-image: url('images/tripassistant.jpg'); background-repeat: no-repeat; background-size: 500px;"></div>
           <div class="text col-lg-6 ftco-animate">
-            <div class="text-inner align-self-start">
-              
-              <h3>Selamat Datang di TripAssistant. Kami Berdiri Sejak Tadi Pagi.</h3>
-              <p>Tim TripAssistant terdiri dari empat orang, yaitu Adi Setiawan, Billy Indra Irawan, Fadel Pamungkas, dan R. Herdjuno Pawenang K. </p>
-
-              <p>Tujuan TripAssistant ini diciptakan tidak lain tidak bukan adalah untuk memenuhi tugas dari Dosen PABW kami.</p>
-
-              <p>Yaudah slur, mungkin segitu aja tentang kami. Makasih.</p>
+          <div class="text-inner align-self-start">
+              <h3>TripAssistant</h3>
+              <p>TripAssistant adalah web yang menyediakan layanan pemesanan tiket wisata secara daring di Indonesia terkhususnya Yogyakarta. Didirikan pada tahun 2019 oleh Adi Setiawan, Billy Indra Irawan, Fadel Pamungkas, Raden Herdjuno. TripAssistant yang merupakan salah satu perusahaan rintisan (startup) berstatus unicorn asal Indonesia ini mengembangkan layanannya pada pemesanan tiket wisata.Sejak tahun 2019, Traveloka mulai berekspansi ke sejumlah negara di Asia Tenggara seperti Singapura, Malaysia, Vietnam, Thailand, dan Filipina.</p>
             </div>
           </div>
         </div>
@@ -96,7 +91,7 @@
       <div class="container">
         <div class="row justify-content-center mb-4 pb-4">
           <div class="col-md-7 text-center heading-section ftco-animate">
-            <h2>Our TripAssistant Team says</h2>
+            <h2>Hawlymawla says</h2>
           </div>
         </div>
             <div class="item text-center">

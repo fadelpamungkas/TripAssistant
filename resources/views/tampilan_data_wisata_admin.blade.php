@@ -32,7 +32,14 @@
            				 <form id="logout-form" action=" {{url('logout')}} " method="POST">
                     		@csrf
            				 </form>
-					</div>
+						</div>
+						<form action="/data_wisata" method="GET" enctype="multipart/form-data" class="d-block d-lg-flex">
+                			<div class="fields d-block d-lg-flex">
+                  				<div class="textfield-search one-third"><input type="text" name="cari" class="form-control" placeholder="Search Location"></div>
+                    				<input type="submit" class="search-submit btn btn-primary" value="Find">  
+                			</div>
+              			</form>
+						</div>
 	<table border = "1">
 		<tr>
 			<th>Id Wisata</th>

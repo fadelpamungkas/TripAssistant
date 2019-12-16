@@ -94,11 +94,11 @@
 
             <div class="pt-5 mt-5">
               <h3 class="mb-5">Reviews</h3>
-              @foreach($comment as $c)
               <ul class="comment-list">
+              @foreach($comment as $c)
                 <li class="comment">
                   <div class="vcard bio">
-                    <img src="/images/person_1.jpg" alt="Image placeholder">
+                    <img src=<?=$c->gambar_comment?> alt="Image placeholder" height="50px" width="50px">
                   </div>
                   <div class="comment-body">
                     <h3><?= $c->nama_user ?></h3>
@@ -106,9 +106,9 @@
                     <p><?= $c->nama_comment ?></p>
                     <p><a href="#" class="reply">Reply</a></p>
                   </div>
-                  </li>
-              </ul>
+                </li>
               @endforeach
+              </ul>
 
               @if(Auth::check())
               <div class="comment-form-wrap pt-5">
@@ -116,13 +116,16 @@
                 <form action="/wisata/comment" method="post"class="p-5 bg-light">
                 {{ csrf_field() }}
                 @foreach($data_wisata as $p)
-                <div class="form-group">
+                  <div class="form-group">
                     <input type="hidden"value="<?=$p->id_wisata?>" name="id_wisata" class="form-control" readonly>
                   </div>
                   <div class="form-group">
                     <input type="hidden"value="<?=$p->nama_wisata?>" name="nama_wisata" class="form-control" readonly>
                   </div>
                 @endforeach
+                  <div class="form-group">
+                    <input type="hidden" value="<?=Auth::user()->gambar_user?>" name="gambar_comment" class="form-control" readonly>
+                  </div>
                   <div class="form-group">
                     <label for="name">Nama</label>
                     <input value="<?=Auth::user()->nama_depan?> <?=Auth::user()->nama_belakang?>" name="nama_user" class="form-control" readonly>

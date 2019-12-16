@@ -17,6 +17,7 @@ class Comment extends Migration
             $table->increments('id_comment');
             $table->integer('rating_comment');
             $table->string('nama_comment');
+            $table->string('gambar_comment');
             $table->string('nama_user');
             $table->unsignedInteger('id_wisata');
             $table->timestamps();

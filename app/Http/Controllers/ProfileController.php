@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
@@ -15,20 +16,20 @@ class ProfileController extends Controller
 	}
 
 	public function update(Request $request){
-		// if ($request->hasFile('gambar_wisata')){
+		if ($request->hasFile('gambar_user')){
 
-		// 	$file = $request->file('gambar_wisata');
-		// 	$nama_file = $file->getClientOriginalName();
-		// 	$file->move('images',$nama_file);
+			$file = $request->file('gambar_user');
+			$nama_file = $file->getClientOriginalName();
+			$file->move('images',$nama_file);
 			
 			DB::table('users')->where('id_user',$request->id)->update([
+				'gambar_user' => '/images/'.$file->getClientOriginalName(),
 				'nama_depan' => $request->nama_depan,
 				'nama_belakang' => $request->nama_belakang,
 				'email' => $request->email,
-				'password' => $request->password,
-				// 'gambar_wisata' => '/images/'.$file->getClientOriginalName()
+				'password' => Hash::make($request['password']),
 			]);
-		// }
+		}
 
 		return redirect('/profile');
     }
