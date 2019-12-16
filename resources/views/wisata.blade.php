@@ -78,12 +78,12 @@
     <section class="ftco-section">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 ftco-animate">            
+          <div class="col-md-8 ftco-animate">           
             <p>
               <img src="<?=$p->gambar_wisata?>" alt="" class="img-fluid">
             </p>
             <p>Rp <?= $p->harga_wisata ?> </p> 
-            <p> <?= $p->review_wisata ?> Riviews </p>
+            <!-- <p> <?= $p->review_wisata ?> Riviews </p> -->
             <p>Jadwal : <?= $p->jadwal_wisata ?> </p>
             <h2 class="mb-3"> <?= $p->nama_wisata ?> </h2>
             <p> <?= $p->informasi_wisata ?> </p>
@@ -166,15 +166,7 @@
                 </div>
               </form>
             </div>
-
-            <div class="sidebar-box ftco-animate">
-              <div class="form-group">
-                <input type="submit" value="Nearby" class="btn btn-primary py-3 px-5">
-              </div>
-            </div>
-
           </div>
-
         </div>
       </div>
     </section> <!-- .section -->
