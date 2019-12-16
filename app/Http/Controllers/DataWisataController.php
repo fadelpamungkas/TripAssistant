@@ -71,7 +71,9 @@ class DataWisataController extends Controller
 				'harga_wisata' => $request->harga_wisata,
 				'jadwal_wisata' => $request->jadwal_wisata,
 				'informasi_wisata' => $request->informasi_wisata,
-				'gambar_wisata' => '/images/'.$file->getClientOriginalName()
+				'gambar_wisata' => '/images/'.$file->getClientOriginalName(),
+				'latitude' => '-7.790121',
+				'longitude' => '110.369417'
 			]);
 
 		}
