@@ -41,7 +41,7 @@
               			</form>
 						</div>
 	<table border = "1">
-		<tr>
+		<tr width>
 			<th>Id Wisata</th>
 			<th>Nama Wisata</th>
 			<th>Harga Wisata</th>

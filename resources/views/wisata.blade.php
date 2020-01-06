@@ -205,8 +205,8 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Popular Destination</h2>
               <ul class="list-unstyled">
-                @foreach($data_wisata as $p)
-                <li><a href="/wisata/{{$p->nama_wisata}}" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
+              @foreach($data_wisata as $p)
+                <li><a href="/wisata/<?=$p->nama_wisata?>" class="py-2 d-block"> <?=$p->nama_wisata?> </a></li>
                 @endforeach
               </ul>
             </div>
@@ -234,9 +234,8 @@
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

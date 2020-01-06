@@ -189,8 +189,7 @@
         </div>
       </div>
       <div class="container">
-      <center> 
-        <div class="row">
+        <div class="row justify-content-center mb-5 pb-5">
           <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
             <div class="media block-6 services d-block text-center">
               <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-find"></span></div></div>
@@ -219,7 +218,6 @@
             </div>      
           </div>
         </div>
-      </center>
       </div>
       
     </section>
